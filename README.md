@@ -1,3 +1,5 @@
+# H2G assessment
+
 ## Suggested technologies
 * React
 * Redux / MobX
