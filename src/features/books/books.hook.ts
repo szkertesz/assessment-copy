@@ -6,7 +6,7 @@ export const booksSelector = (state: RootState) => {
     const filterStatus = state.books.filterOptions.status
     if (filterStatus) {
         return state.books.books.filter((book) => {
-            return book.reading === Boolean(state.books.filterOptions.status === 'reading')
+            return book.read === Boolean(state.books.filterOptions.status === 'read')
         })
     }
     return state.books.books;
