@@ -1,46 +1,113 @@
-# Getting Started with Create React App
+## Suggested technologies
+* React
+* Redux / MobX
+* jest
+* [json-server](https://github.com/typicode/json-server) (easy to use mock server)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) TS template.
+## Description
+Write a reading list application in React.
+In this application users can add books to their list, mark a book as "reading" or "read" and books can be filtered based on their state.
+Use Redux, MobX, or the technology of your choice to store the application's internal state.
+Write unit tests for the most important parts.
 
-## Available Scripts
+## Requirements
+### Pages (routes)
+* "/"
+* "/books"
+* "/books/new"
+* "/books/edit/{id}"
+* "/404"
 
-In the project directory, you can run:
+### "/"
+Redirect to "/books"
 
-### `npm start`
+### "/books"
+List of books.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+#### Elements
+* title: "Reading list"
+* "New" button
+* "Reading", "Read" filter buttons,
+* Book list:
+  * book list item
+    * book title,
+    * "edit" button
+    * "reading", "read" buttons
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+#### Behavior
+* While the data is loading display a loading indicator
+  * on unsuccessful data fetching display error message
+* on "New" button click navigate to "/books/new" form
+* on filter button click
+  * indicate visually on the button if the given filter is active or not,
+  * show the filtered book list according to the filter button states
+  * only one filter can be active at a time
+* Book list item edit button should navigate to "/books/edit/{i}"
+  * on unsuccessful routing display error message
+* Book list item "mark as reading", "mark as read" button
+  * Save the change on server
+  * while the operation is in progress display a loading indicator
+  * on unsuccessful save display error message
+  * on successful save update the UI accordingly
 
-### `npm test`
+### "/books/new"
+A form to add a new book to the book list
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#### Elements
+* Page Title: "Add new book" | "Editing book"
+* Book form
+  * Title: required
+  * Author: required
+  * Description: optional
+  * Submit button
+  * Cancel button
 
-### `npm run build`
+#### Behavior
+* Use form validation according to the form elements description
+  * if an already edited input field with validation has validation errors
+    * add red border to the input field
+    * display validation error message
+* submit button should be disabled while the form is invalid
+* on Cancel button click navigate back to the book list page
+* on submit button click
+  * display a loading indicator
+  * send the form data to server
+  * on successful request navigate back to "/books" page
+  * on failed request display error message
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### "/books/edit/{id}"
+A form to edit an existing book in the list
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### Behavior
+* routes could be lazy loading
+* reuse the "/books/new" form, the behavior should be the same
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### "/404"
+Show a not found page
 
-### `npm run eject`
+### "/*"
+Redirect to "/404" route
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Json server example `db.json` file
+```json
+{
+  "books": [
+    {
+      "title": "Harry Potter and the Philosopher's Stone",
+      "author": "J. K. Rowling",
+      "description": "Harry Potter and the Philosopher's Stone is a fantasy novel written by British author J. K. Rowling. The first novel in the Harry Potter series and Rowling's debut novel, it follows Harry Potter, a young wizard who discovers his magical heritage on his eleventh birthday,",
+      "reading": false,
+      "read": false,
+      "id": 1
+    },
+    {
+      "title": "Foundation",
+      "author": "Isaac Asimov",
+      "description": "",
+      "reading": false,
+      "read": false,
+      "id": 2
+    }
+  ]
+}
+```
