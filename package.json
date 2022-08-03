@@ -24,7 +24,7 @@
     },
     "scripts": {
         "start:react": "react-scripts start",
-        "start:server": "json-server --watch public/db.json --port 3004",
+        "start:server": "json-server --watch public/db.json --port 3004 --delay 1000",
         "start": "concurrently \"npm run start:server\" \"npm run start:react\"",
         "build": "react-scripts build",
         "test": "react-scripts test",

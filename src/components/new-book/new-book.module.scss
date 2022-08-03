@@ -1,0 +1,10 @@
+.book-form {
+    &__input {
+        &--error {
+            border: 2px solid red;
+        }
+        &--valid {
+            border: 2px solid green;
+        }
+    }
+}
