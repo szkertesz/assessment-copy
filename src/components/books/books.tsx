@@ -6,7 +6,7 @@ import BookItem from '../book-item';
 import ActionBar from '../action-bar';
 import { useBooks } from '../../features/books/books.hook';
 
-function Books(): JSX.Element  {
+function Books(): JSX.Element {
     const dispatch = useAppDispatch();
     const booksStatus = useAppSelector((state) => state.books.status);
     const booksError = useAppSelector((state) => state.books.error);
@@ -23,11 +23,12 @@ function Books(): JSX.Element  {
         <>
             <header>
                 <h1>Reading List</h1>
-                <ActionBar loadingState={booksStatus === 'loading' ? true : false} />
+                <ActionBar
+                    loadingState={booksStatus === 'loading' ? true : false}
+                />
             </header>
             <main>
-
-            {booksStatus === 'succeeded' &&
+                {booksStatus === 'succeeded' && (
                     <ul>
                         {books.map((book: IBookItem) => (
                             <li key={book.id}>
@@ -35,13 +36,12 @@ function Books(): JSX.Element  {
                             </li>
                         ))}
                     </ul>
-            }
+                )}
 
-            {booksError && <span>{ booksError }</span>}
-
+                {booksError && <span>{booksError}</span>}
             </main>
         </>
     );
-};
+}
 
 export default Books;

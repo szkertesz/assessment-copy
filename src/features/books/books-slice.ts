@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { client } from '../api/client';
 import { IBookItem } from '../../components/book-item/book-item.interface';
+import { RootState } from '../../app/store';
 
 interface BooksState {
     books: IBookItem[];
@@ -58,7 +59,7 @@ export const editBook = createAsyncThunk(
     async (newBookData: IBookItem, { rejectWithValue }) => {
         try {
             const response = await client.put(
-                `http://localhost:3004/books`,
+                `http://localhost:3004/books/${newBookData.id}`,
                 newBookData
             );
             return response.data;
@@ -108,3 +109,6 @@ const booksSlice = createSlice({
 export const { setStatusFilter } = booksSlice.actions
 
 export default booksSlice.reducer
+
+export const selectBookById = (state: RootState, bookId: number) =>
+    state.books.books.find(book => book.id === bookId);

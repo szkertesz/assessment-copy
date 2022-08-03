@@ -12,7 +12,7 @@ const BookItem: React.FC<IBookItemProps> = ({ bookInfo }) => {
         <article className={styles['book-item']}>
             <h2 className={styles['book-item__title']}>{title}</h2>
             <div className={styles['book-item__actions']}>
-                <Link to={`edit/${id}`} />
+                <Link to={`/edit/${id}`}>edit</Link>
             </div>
         </article>
     );
