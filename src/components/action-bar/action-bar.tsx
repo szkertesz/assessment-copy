@@ -9,7 +9,7 @@ type ActionBarProps = {
 const ActionBar: React.FC<ActionBarProps> = ({loadingState}) => {
     return (
         <section className={styles['action-bar']}>
-            <Link to='books/new'>New</Link>
+            <Link to='/books/new'>New</Link>
             <div>{loadingState ? 'loading...' : ''}</div>
             <StatusFilter />
         </section>
