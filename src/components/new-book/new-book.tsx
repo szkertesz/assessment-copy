@@ -52,7 +52,8 @@ const NewBook = () => {
         setDescription('');
         navigate('/books', { replace: true });
     };
-    const handleOnSubmit = async () => {
+    const handleOnSubmit = async (e: React.FormEvent) => {
+        e.preventDefault()
         if (canSave) {
             try {
                 setAddRequestStatus('pending');
@@ -68,7 +69,7 @@ const NewBook = () => {
                 setTitle('');
                 setAuthor('');
                 setDescription('');
-                navigate('/books', { replace: true });
+                navigate('/', { replace: true });
             } catch (error) {
                 setAddRequestError(`Failed to add new book: ${error}`);
             } finally {
