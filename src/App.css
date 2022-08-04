@@ -1,3 +1,30 @@
-.App {
+/* custom properties */
+:root {
+    --color-border: #d0d7de;
+    --color-body-background: #f6f8fa;
+    --color-button-background: var(--color-body-background);
+    --radius-global: 0.25rem;
+}
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--color-body-background);
+}
 
+/*
+ * basic button styles
+ */
+button, .button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    line-height: 1;
+    background-color: var(--color-button-background);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-global);
 }

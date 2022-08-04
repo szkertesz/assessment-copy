@@ -13,8 +13,8 @@
       "title": "Foundation",
       "author": "Isaac Asimov",
       "description": "",
-      "reading": false,
-      "read": true
+      "reading": true,
+      "read": false
     },
     {
       "id": 3,

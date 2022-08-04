@@ -40,8 +40,17 @@ const BookItem: React.FC<IBookItemProps> = ({ bookInfo }) => {
         <article className={styles['book-item']}>
             <h2 className={styles['book-item__title']}>{title}</h2>
             <div className={styles['book-item__actions']}>
-                <Link to={`/edit/${id}`}>edit</Link>
-                <StatusToggle stateValue={value} onChangeHandler={handleOnChange} idPrefix={id} />
+                <Link
+                    to={`/edit/${id}`}
+                    className={`${styles['book-item__button']} button`}
+                >
+                    Edit
+                </Link>
+                <StatusToggle
+                    stateValue={value}
+                    onChangeHandler={handleOnChange}
+                    idPrefix={id}
+                />
             </div>
         </article>
     );

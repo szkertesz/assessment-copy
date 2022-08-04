@@ -5,6 +5,7 @@ import { IBookItem } from '../book-item/book-item.interface';
 import BookItem from '../book-item';
 import ActionBar from '../action-bar';
 import { useBooks } from '../../features/books/books.hook';
+import styles from './books.module.scss'
 
 function Books(): JSX.Element {
     const dispatch = useAppDispatch();
@@ -29,7 +30,7 @@ function Books(): JSX.Element {
             </header>
             <main>
                 {booksStatus === 'succeeded' && (
-                    <ul>
+                    <ul className={styles['books__list']}>
                         {books.map((book: IBookItem) => (
                             <li key={book.id}>
                                 <BookItem bookInfo={book} />

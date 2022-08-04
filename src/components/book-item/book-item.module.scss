@@ -1,0 +1,19 @@
+.book-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.25rem 1rem;
+    width: 100%;
+    background-color: var(--color-body-background);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-global);
+
+    &__actions {
+        display: flex;
+        align-items: center;
+    }
+
+    &__button {
+        text-decoration: none;
+    }
+}

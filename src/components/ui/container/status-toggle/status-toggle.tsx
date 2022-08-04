@@ -19,8 +19,14 @@ const StatusToggle: React.FC<IStatusToggleProps> = ({stateValue, onChangeHandler
                     value='reading'
                     checked={stateValue === 'reading'}
                     onChange={onChangeHandler}
+                    className='visually-hidden'
                 />
-                <label htmlFor={`${idPrefix}radio-reading`}>Reading</label>
+                <label
+                    htmlFor={`${idPrefix}radio-reading`}
+                    className={`${styles['status-toggle__label']} button`}
+                >
+                    Reading
+                </label>
             </div>
             <div className={styles['status-toggle__group']}>
                 <input
@@ -30,8 +36,14 @@ const StatusToggle: React.FC<IStatusToggleProps> = ({stateValue, onChangeHandler
                     value='read'
                     checked={stateValue === 'read'}
                     onChange={onChangeHandler}
+                    className='visually-hidden'
                 />
-                <label htmlFor={`${idPrefix}radio-read`}>Read</label>
+                <label
+                    htmlFor={`${idPrefix}radio-read`}
+                    className={`${styles['status-toggle__label']} button`}
+                >
+                    Read
+                </label>
             </div>
         </fieldset>
     );
