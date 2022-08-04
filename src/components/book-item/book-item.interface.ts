@@ -6,3 +6,6 @@ export interface IBookItem {
     read: boolean;
     id: number;
 }
+
+export type IBookItemId = Pick<IBookItem, 'id'>;
+export type IBookItemStatus = Pick<IBookItem, 'id' | 'read'>;

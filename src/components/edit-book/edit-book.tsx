@@ -75,7 +75,7 @@ const EditBook = () => {
                         reading: false,
                         read: false,
                     })
-                );
+                ).unwrap();
                 navigate('/books', { replace: true });
             } catch (error) {
                 setAddRequestError(`Failed to add new book: ${error}`);

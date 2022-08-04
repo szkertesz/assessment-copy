@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { client } from '../api/client';
-import { IBookItem } from '../../components/book-item/book-item.interface';
+import { IBookItem, IBookItemStatus } from '../../components/book-item/book-item.interface';
 import { RootState } from '../../app/store';
 
 interface BooksState {
@@ -41,19 +41,7 @@ export const addBook = createAsyncThunk(
         }
     }
 );
-export const deleteBook = createAsyncThunk(
-    'books/deleteBook',
-    async (bookId: number, { rejectWithValue }) => {
-        try {
-            const response = await client.delete(
-                `http://localhost:3004/books/${bookId}`
-            );
-            return response.data;
-        } catch (error) {
-            return rejectWithValue(error);
-        }
-    }
-);
+
 export const editBook = createAsyncThunk(
     'books/editBook',
     async (newBookData: IBookItem, { rejectWithValue }) => {
@@ -91,11 +79,6 @@ const booksSlice = createSlice({
             })
             .addCase(addBook.fulfilled, (state, action) => {
                 state.books.push(action.payload);
-            })
-            .addCase(deleteBook.fulfilled, (state, action) => {
-                state.books = state.books.filter(
-                    (book) => book.id !== action.payload.id
-                );
             })
             .addCase(editBook.fulfilled, (state, action) => {
                 const index = state.books.findIndex(

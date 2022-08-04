@@ -1,60 +1,28 @@
 {
   "books": [
     {
+      "id": 1,
       "title": "Harry Potter and the Philosopher's Stone",
-      "author": "J. K. Rowling",
+      "author": "J. K. Rowlingswsdfsdf",
       "description": "Harry Potter and the Philosopher's Stone is a fantasy novel written by British author J. K. Rowling. The first novel in the Harry Potter series and Rowling's debut novel, it follows Harry Potter, a young wizard who discovers his magical heritage on his eleventh birthday,",
       "reading": false,
-      "read": false,
-      "id": 1
+      "read": true
     },
     {
+      "id": 2,
       "title": "Foundation",
       "author": "Isaac Asimov",
       "description": "",
+      "reading": false,
+      "read": true
+    },
+    {
+      "id": 3,
+      "title": "Foundations",
+      "author": "asdf",
+      "description": "sadf",
       "reading": true,
-      "read": false,
-      "id": 2
-    },
-    {
-      "title": "title 1",
-      "author": "author 1",
-      "description": "description 1",
-      "reading": false,
-      "read": false,
-      "id": 3
-    },
-    {
-      "title": "sdf",
-      "author": "sdf",
-      "description": "",
-      "reading": false,
-      "read": false,
-      "id": 4
-    },
-    {
-      "title": "sdf",
-      "author": "sdf",
-      "description": "qwe",
-      "reading": false,
-      "read": false,
-      "id": 5
-    },
-    {
-      "title": "asdfdf ",
-      "author": "fasdfasdfasdfasdfa",
-      "description": "asdfasdfasdfasdf",
-      "reading": false,
-      "read": false,
-      "id": 6
-    },
-    {
-      "title": "asdf fdsa a",
-      "author": "as fdds fdsa",
-      "description": "asdf fdsaa a ",
-      "reading": false,
-      "read": false,
-      "id": 7
+      "read": false
     }
   ]
 }
