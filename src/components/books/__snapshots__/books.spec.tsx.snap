@@ -10,7 +10,7 @@ exports[`Books should render component 1`] = `
       class="action-bar"
     >
       <a
-        class="button"
+        class="action-bar__button button"
         href="/books/new"
       >
         New
@@ -139,7 +139,7 @@ exports[`Books should render one component 1`] = `
       class="action-bar"
     >
       <a
-        class="button"
+        class="action-bar__button button"
         href="/books/new"
       >
         New
