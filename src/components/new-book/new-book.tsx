@@ -81,7 +81,7 @@ const NewBook = () => {
     return (
         <>
             <h1>Add new book</h1>
-            <form action='' className='book-form'>
+            <form action='' className={styles['book-form']}>
                 <div className={styles['book-form__group']}>
                     <label htmlFor='bookTitle'>Title*</label>
                     <input

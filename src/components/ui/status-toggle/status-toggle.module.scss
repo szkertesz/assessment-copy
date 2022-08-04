@@ -1,7 +1,9 @@
 .status-toggle {
     display: flex;
+    align-items: center;
     border: none;
     padding: 0;
+
     &__group {
         & + & {
             margin-left: 0.25rem;
