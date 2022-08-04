@@ -3,15 +3,15 @@ import { client } from '../api/client';
 import { IBookItem, IBookItemStatus } from '../../components/book-item/book-item.interface';
 import { RootState } from '../../app/store';
 
-interface BooksState {
+export interface BooksState {
     books: IBookItem[];
-    status: 'idle' | 'loading' | 'succeeded' | 'failed';
+    status: 'idle' | 'loading' | 'succeeded' | 'failed' | string;
     error: string | null | undefined;
     filterOptions: {
         status: 'reading' | 'read' | undefined;
     };
 }
-const initialState: BooksState = {
+export const initialState: BooksState = {
     books: [],
     status: 'idle',
     error: null,

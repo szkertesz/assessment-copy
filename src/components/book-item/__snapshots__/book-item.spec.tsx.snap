@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BookItem should render component 1`] = `
+<div>
+  <article
+    class="book-item"
+  >
+    <h2
+      class="book-item__title"
+    >
+      Harry Potter and the Philosopher's Stone
+    </h2>
+    <div
+      class="book-item__actions"
+    >
+      <a
+        class="book-item__button button"
+        href="/edit/1"
+      >
+        Edit
+      </a>
+      <fieldset
+        class="status-toggle"
+      >
+        <div
+          class="status-toggle__group"
+        >
+          <input
+            checked=""
+            class="visually-hidden"
+            id="1radio-reading"
+            name="status-1"
+            type="radio"
+            value="reading"
+          />
+          <label
+            class="status-toggle__label button"
+            for="1radio-reading"
+          >
+            Reading
+          </label>
+        </div>
+        <div
+          class="status-toggle__group"
+        >
+          <input
+            class="visually-hidden"
+            id="1radio-read"
+            name="status-1"
+            type="radio"
+            value="read"
+          />
+          <label
+            class="status-toggle__label button"
+            for="1radio-read"
+          >
+            Read
+          </label>
+        </div>
+      </fieldset>
+    </div>
+  </article>
+</div>
+`;

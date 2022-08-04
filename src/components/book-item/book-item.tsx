@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { Link } from "react-router-dom"
 import { useAppDispatch } from "../../app/hooks"
 import { editBook } from "../../features/books/books-slice"
-import StatusToggle from "../ui/container/status-toggle"
+import StatusToggle from "../ui/status-toggle"
 import { IBookItem } from "./book-item.interface"
 import styles from './book-item.module.scss'
 
@@ -39,6 +39,7 @@ const BookItem: React.FC<IBookItemProps> = ({ bookInfo }) => {
     return (
         <article className={styles['book-item']}>
             <h2 className={styles['book-item__title']}>{title}</h2>
+            {requestStatus === 'pending' && <p role='alert'>Loading...</p>}
             <div className={styles['book-item__actions']}>
                 <Link
                     to={`/edit/${id}`}

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch } from '../../app/hooks';
 import { setStatusFilter } from '../../features/books/books-slice';
-import StatusToggle from '../ui/container/status-toggle/status-toggle';
+import StatusToggle from '../ui/status-toggle';
 import styles from './status-filter.module.scss'
 
 function StatusFilter() {

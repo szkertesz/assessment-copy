@@ -4,7 +4,7 @@ import styles from './container.module.scss';
 
 function Container(props: IContainer) {
     return (
-        <div className={styles.container}>
+        <div className={styles.container} data-testid='container'>
             <Outlet />
             {props.children}
         </div>
