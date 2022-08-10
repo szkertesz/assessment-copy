@@ -1,24 +1,24 @@
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { fetchBooks } from '../../features/books/books-slice';
-import { useEffect } from 'react';
-import { IBookItem } from '../book-item/book-item.interface';
-import BookItem from '../book-item';
-import ActionBar from '../action-bar';
-import { useBooks } from '../../features/books/books.hook';
+import { useAppDispatch, useAppSelector } from '../../app/hooks'
+import { BooksState, fetchBooks } from '../../features/books/books-slice'
+import { useEffect } from 'react'
+import { IBookItem } from '../book-item/book-item.interface'
+import BookItem from '../book-item'
+import ActionBar from '../action-bar'
+import { useBooks } from '../../features/books/books.hook'
 import styles from './books.module.scss'
 
 function Books(): JSX.Element {
-    const dispatch = useAppDispatch();
-    const booksStatus = useAppSelector((state) => state.books.status);
-    const booksError = useAppSelector((state) => state.books.error);
+    const dispatch = useAppDispatch()
+    const booksStatus = useAppSelector(state => state.books.status)
+    const booksError = useAppSelector(state => state.books.error)
     // const books = useAppSelector((state) => state.books.books);
-    const books = useBooks();
+    const books = useBooks()
 
     useEffect(() => {
         if (booksStatus === 'idle') {
-            dispatch(fetchBooks());
+            dispatch(fetchBooks())
         }
-    }, [booksStatus, dispatch]);
+    }, [booksStatus, dispatch])
 
     return (
         <>
@@ -42,7 +42,7 @@ function Books(): JSX.Element {
                 {booksError && <span>{booksError}</span>}
             </main>
         </>
-    );
+    )
 }
 
-export default Books;
+export default Books

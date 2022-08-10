@@ -28,7 +28,7 @@
         "start": "concurrently \"npm run start:server\" \"npm run start:react\"",
         "build": "react-scripts build",
         "test": "react-scripts test",
-        "test:coverage": "npm test -- --coverage --verbose",
+        "test:coverage": "npm test -- --coverage --verbose .",
         "eject": "react-scripts eject"
     },
     "eslintConfig": {

@@ -1,31 +1,34 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { client } from '../api/client';
-import { IBookItem, IBookItemStatus } from '../../components/book-item/book-item.interface';
-import { RootState } from '../../app/store';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { client } from '../api/client'
+import {
+    IBookItem,
+    IBookItemStatus,
+} from '../../components/book-item/book-item.interface'
+import type { RootState } from '../../app/store'
 
 export interface BooksState {
-    books: IBookItem[];
-    status: 'idle' | 'loading' | 'succeeded' | 'failed' | string;
-    error: string | null | undefined;
+    books: IBookItem[]
+    status: 'idle' | 'loading' | 'succeeded' | 'failed'
+    error: string | null | undefined
     filterOptions: {
-        status: 'reading' | 'read' | undefined;
-    };
+        status: 'reading' | 'read' | undefined
+    }
 }
 export const initialState: BooksState = {
     books: [],
     status: 'idle',
     error: null,
     filterOptions: {
-        status: undefined
-    }
+        status: undefined,
+    },
 }
 
-type BookToAdd = Omit<IBookItem, 'id'>;
+type BookToAdd = Omit<IBookItem, 'id'>
 
 export const fetchBooks = createAsyncThunk('books/fetchBooks', async () => {
-    const response = await client.get('http://localhost:3004/books');
-    return response.data;
-});
+    const response = await client.get('http://localhost:3004/books')
+    return response.data
+})
 
 export const addBook = createAsyncThunk(
     'books/addBook',
@@ -34,13 +37,13 @@ export const addBook = createAsyncThunk(
             const response = await client.post(
                 'http://localhost:3004/books',
                 newBookData
-            );
-            return response.data;
+            )
+            return response.data
         } catch (error) {
-            return rejectWithValue(error);
+            return rejectWithValue(error)
         }
     }
-);
+)
 
 export const editBook = createAsyncThunk(
     'books/editBook',
@@ -49,13 +52,13 @@ export const editBook = createAsyncThunk(
             const response = await client.put(
                 `http://localhost:3004/books/${newBookData.id}`,
                 newBookData
-            );
-            return response.data;
+            )
+            return response.data
         } catch (error) {
-            return rejectWithValue(error);
+            return rejectWithValue(error)
         }
     }
-);
+)
 
 const booksSlice = createSlice({
     name: 'books',
@@ -63,30 +66,30 @@ const booksSlice = createSlice({
     reducers: {
         setStatusFilter: (state, action) => {
             state.filterOptions.status = action.payload
-        }
+        },
     },
     extraReducers(builder) {
         builder
             .addCase(fetchBooks.pending, (state, action) => {
-                state.status = 'loading';
+                state.status = 'loading'
             })
             .addCase(fetchBooks.fulfilled, (state, action) => {
-                state.status = 'succeeded';
-                state.books = state.books.concat(action.payload);
+                state.status = 'succeeded'
+                state.books = state.books.concat(action.payload)
             })
             .addCase(fetchBooks.rejected, (state, action) => {
-                state.status = 'failed';
+                state.status = 'failed'
             })
             .addCase(addBook.fulfilled, (state, action) => {
-                state.books.push(action.payload);
+                state.books.push(action.payload)
             })
             .addCase(editBook.fulfilled, (state, action) => {
                 const index = state.books.findIndex(
-                    (book) => book.id === action.payload.id
-                );
-                state.books[index] = action.payload;
-            });
-    }
+                    book => book.id === action.payload.id
+                )
+                state.books[index] = action.payload
+            })
+    },
 })
 
 export const { setStatusFilter } = booksSlice.actions
@@ -94,4 +97,4 @@ export const { setStatusFilter } = booksSlice.actions
 export default booksSlice.reducer
 
 export const selectBookById = (state: RootState, bookId: number) =>
-    state.books.books.find(book => book.id === bookId);
+    state.books.books.find(book => book.id === bookId)
