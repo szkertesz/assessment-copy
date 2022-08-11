@@ -1,71 +1,71 @@
-import { SetStateAction, useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { useNavigate, useParams } from 'react-router-dom';
-import styles from '../new-book/new-book.module.scss';
-import { editBook, selectBookById } from '../../features/books/books-slice';
-import type { RootState } from '../../app/store'
-import { IBookItem } from '../book-item/book-item.interface';
+import { SetStateAction, useState } from 'react'
+import { useAppDispatch, useAppSelector } from 'app/hooks'
+import { useNavigate, useParams } from 'react-router-dom'
+import styles from 'components/new-book/new-book.module.scss'
+import { editBook, selectBookById } from 'features/books/books-slice'
+import { IBookItem } from 'components/book-item/book-item.interface'
 
 const EditBook = () => {
-    const dispatch = useAppDispatch();
-    const navigate = useNavigate();
+    const dispatch = useAppDispatch()
+    const navigate = useNavigate()
     const { bookId } = useParams()
-    const bookToEdit = useAppSelector(state => selectBookById(state, Number(bookId))) as IBookItem;
+    const bookToEdit = useAppSelector(state =>
+        selectBookById(state, Number(bookId))
+    ) as IBookItem
     console.log(bookToEdit)
 
-    const [addRequestStatus, setAddRequestStatus] = useState('idle');
-    const [addRequestError, setAddRequestError] = useState('');
-    const [formValidity, setFormValidity] = useState(false);
-    const [title, setTitle] = useState(bookToEdit.title);
-    const [author, setAuthor] = useState(bookToEdit.author);
-    const [description, setDescription] = useState(bookToEdit.description);
-    const [titleError, setTitleError] = useState(false);
-    const [authorError, setAuthorError] = useState(false);
+    const [addRequestStatus, setAddRequestStatus] = useState('idle')
+    const [addRequestError, setAddRequestError] = useState('')
+    const [formValidity, setFormValidity] = useState(false)
+    const [title, setTitle] = useState(bookToEdit.title)
+    const [author, setAuthor] = useState(bookToEdit.author)
+    const [description, setDescription] = useState(bookToEdit.description)
+    const [titleError, setTitleError] = useState(false)
+    const [authorError, setAuthorError] = useState(false)
 
-    const canSave =
-        formValidity && addRequestStatus === 'idle';
+    const canSave = formValidity && addRequestStatus === 'idle'
 
     const checkValidity = () => {
-        setFormValidity([title, author].every(Boolean) ? true : false);
-    };
+        setFormValidity([title, author].every(Boolean) ? true : false)
+    }
 
     const handleOnTitleChanged = (e: {
-        target: { value: SetStateAction<string> };
+        target: { value: SetStateAction<string> }
     }) => {
-        setTitle(e.target.value);
-    };
+        setTitle(e.target.value)
+    }
     const handleOnAuthorChanged = (e: {
-        target: { value: SetStateAction<string> };
+        target: { value: SetStateAction<string> }
     }) => {
-        setAuthor(e.target.value);
-    };
+        setAuthor(e.target.value)
+    }
     const handleOnDescriptionChanged = (e: {
-        target: { value: SetStateAction<string> };
+        target: { value: SetStateAction<string> }
     }) => {
-        setDescription(e.target.value);
-    };
+        setDescription(e.target.value)
+    }
     const handleOnTitleBlur = (e: { target: { value: string } }) => {
-        setTitleError(e.target.value ? false : true);
-        checkValidity();
-    };
+        setTitleError(e.target.value ? false : true)
+        checkValidity()
+    }
     const handleOnAuthorBlur = (e: { target: { value: string } }) => {
-        setAuthorError(e.target.value ? false : true);
-        checkValidity();
-    };
+        setAuthorError(e.target.value ? false : true)
+        checkValidity()
+    }
     const handleOnDescriptionBLur = (e: { target: { value: string } }) => {
-        checkValidity();
-    };
+        checkValidity()
+    }
     const handleOnCancel = () => {
-        setTitle('');
-        setAuthor('');
-        setDescription('');
-        navigate('/books', { replace: true });
-    };
+        setTitle('')
+        setAuthor('')
+        setDescription('')
+        navigate('/books', { replace: true })
+    }
     const handleOnSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
         if (canSave) {
             try {
-                setAddRequestStatus('pending');
+                setAddRequestStatus('pending')
                 await dispatch(
                     editBook({
                         id: Number(bookId),
@@ -75,26 +75,26 @@ const EditBook = () => {
                         reading: false,
                         read: false,
                     })
-                ).unwrap();
-                navigate('/books', { replace: true });
+                ).unwrap()
+                navigate('/books', { replace: true })
             } catch (error) {
-                setAddRequestError(`Failed to add new book: ${error}`);
+                setAddRequestError(`Failed to add new book: ${error}`)
             } finally {
-                setAddRequestStatus('idle');
+                setAddRequestStatus('idle')
             }
         } else {
         }
-    };
+    }
     return (
         <>
             <h1>Add new book</h1>
-            <form action='' className='book-form'>
+            <form action="" className="book-form">
                 <div className={styles['book-form__group']}>
-                    <label htmlFor='bookTitle'>Title*</label>
+                    <label htmlFor="bookTitle">Title*</label>
                     <input
-                        type='text'
-                        id='bookTitle'
-                        name='bookTitle'
+                        type="text"
+                        id="bookTitle"
+                        name="bookTitle"
                         value={title}
                         onChange={handleOnTitleChanged}
                         onBlur={handleOnTitleBlur}
@@ -109,14 +109,14 @@ const EditBook = () => {
                             }`}
                         required
                     />
-                    {titleError && <p role='alert'>Title is required</p>}
+                    {titleError && <p role="alert">Title is required</p>}
                 </div>
                 <div className={styles['book-form__group']}>
-                    <label htmlFor='bookAuthor'>Author*</label>
+                    <label htmlFor="bookAuthor">Author*</label>
                     <input
-                        type='text'
-                        id='bookAuthor'
-                        name='bookAuthor'
+                        type="text"
+                        id="bookAuthor"
+                        name="bookAuthor"
                         value={author}
                         onChange={handleOnAuthorChanged}
                         onBlur={handleOnAuthorBlur}
@@ -131,13 +131,13 @@ const EditBook = () => {
                             }`}
                         required
                     />
-                    {authorError && <p role='alert'>Author is required</p>}
+                    {authorError && <p role="alert">Author is required</p>}
                 </div>
                 <div className={styles['book-form__group']}>
-                    <label htmlFor='bookDescription'>Description</label>
+                    <label htmlFor="bookDescription">Description</label>
                     <textarea
-                        id='bookDescription'
-                        name='bookDescription'
+                        id="bookDescription"
+                        name="bookDescription"
                         value={description}
                         rows={3}
                         onChange={handleOnDescriptionChanged}
@@ -146,14 +146,14 @@ const EditBook = () => {
                 </div>
                 <div className={styles['book-form__actions']}>
                     <button
-                        type='submit'
+                        type="submit"
                         onClick={handleOnSubmit}
                         id={'add-book-submit'}
                         disabled={!formValidity}
                     >
                         Submit
                     </button>
-                    <button type='button' onClick={handleOnCancel}>
+                    <button type="button" onClick={handleOnCancel}>
                         Cancel
                     </button>
                 </div>
@@ -163,9 +163,7 @@ const EditBook = () => {
                 {addRequestError && <p>{addRequestError}</p>}
             </div>
         </>
-    );
-};
+    )
+}
 
-export default EditBook;
-
-
+export default EditBook

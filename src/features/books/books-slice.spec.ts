@@ -1,4 +1,10 @@
-import reducer, { BooksState, initialState, selectBookById, setStatusFilter } from './books-slice'
+import reducer, {
+    BooksState,
+    initialState,
+    selectBookById,
+    setStatusFilter,
+} from './books-slice'
+import { RootState } from '../../app/store'
 
 describe('booksSlice', () => {
     it('should return the initial state', () => {
@@ -9,10 +15,10 @@ describe('booksSlice', () => {
             filterOptions: {
                 status: undefined,
             },
-        });
-    });
-    it('should set the status filter to the \'read\' option', () => {
-        const previousState = initialState;
+        })
+    })
+    it("should set the status filter to the 'read' option", () => {
+        const previousState = initialState
         expect(reducer(previousState, setStatusFilter('read'))).toEqual({
             books: [],
             status: 'idle',
@@ -20,10 +26,10 @@ describe('booksSlice', () => {
             filterOptions: {
                 status: 'read',
             },
-        });
-    });
+        })
+    })
     it('should select the book w/ the id of 2', () => {
-        const currentState = {
+        const currentState: RootState = {
             books: {
                 books: [
                     {
@@ -48,19 +54,17 @@ describe('booksSlice', () => {
                 error: null,
                 filterOptions: {
                     status: undefined,
-                }
-            }
+                },
+            },
         }
 
-        expect(selectBookById(currentState, 2)).toEqual(
-            {
-                id: 2,
-                title: 'Foundation',
-                author: 'Isaac Asimov',
-                description: '',
-                reading: true,
-                read: false,
-            }
-        );
-    });
-});
+        expect(selectBookById(currentState, 2)).toEqual({
+            id: 2,
+            title: 'Foundation',
+            author: 'Isaac Asimov',
+            description: '',
+            reading: true,
+            read: false,
+        })
+    })
+})

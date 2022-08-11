@@ -1,21 +1,24 @@
-import React, { useEffect } from 'react';
-import { useAppDispatch } from '../../app/hooks';
-import { setStatusFilter } from '../../features/books/books-slice';
-import StatusToggle from '../ui/status-toggle';
-import styles from './status-filter.module.scss'
+import React, { useEffect } from 'react'
+import { useAppDispatch } from 'app/hooks'
+import { setStatusFilter } from 'features/books/books-slice'
+import StatusToggle from 'components/ui/status-toggle'
 
 function StatusFilter() {
-    const dispatch = useAppDispatch();
-    const [value, setValue] = React.useState<string>('reading');
+    const dispatch = useAppDispatch()
+    const [value, setValue] = React.useState<string>('reading')
     const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setValue(event.target.value);
-    };
+        setValue(event.target.value)
+    }
     useEffect(() => {
-        dispatch(setStatusFilter(value as string));
-    }, [value, dispatch]);
+        dispatch(setStatusFilter(value as string))
+    }, [value, dispatch])
     return (
-        <StatusToggle stateValue={value} onChangeHandler={handleOnChange} legend={'Filters:'} />
-    );
+        <StatusToggle
+            stateValue={value}
+            onChangeHandler={handleOnChange}
+            legend={'Filters:'}
+        />
+    )
 }
 
-export default StatusFilter;
+export default StatusFilter

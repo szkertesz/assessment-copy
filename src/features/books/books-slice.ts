@@ -1,9 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { client } from '../api/client'
-import {
-    IBookItem,
-    IBookItemStatus,
-} from '../../components/book-item/book-item.interface'
+import { IBookItem } from '../../components/book-item/book-item.interface'
 import type { RootState } from '../../app/store'
 
 export interface BooksState {
