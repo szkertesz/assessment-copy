@@ -63,7 +63,6 @@ exports[`NewBook should render component 1`] = `
       class="book-form__actions"
     >
       <button
-        disabled=""
         id="add-book-submit"
         type="submit"
       >

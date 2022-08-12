@@ -137,7 +137,7 @@ const NewBook = () => {
                         type="submit"
                         onClick={handleOnSubmit}
                         id={'add-book-submit'}
-                        disabled={!formValidity}
+                        // disabled={!formValidity}
                     >
                         Submit
                     </button>
@@ -147,7 +147,9 @@ const NewBook = () => {
                 </div>
             </form>
             <div>
-                {addRequestStatus === 'pending' && <p>Loading...</p>}
+                {addRequestStatus === 'pending' && (
+                    <p role="alert">Loading...</p>
+                )}
                 {addRequestError && <p>{addRequestError}</p>}
             </div>
         </>
